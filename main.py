@@ -1,11 +1,10 @@
 from flask import Flask, request
-import logging
+
 import json
 import random
 
 app = Flask(__name__)
 
-logging.basicConfig(level=logging.INFO)
 
 cities = {
     'москва': ['213044/b3be55b6271ef26b4115', '1652229/92116740b61396470063'],
@@ -18,7 +17,7 @@ sessionStorage = {}
 
 @app.route('/post', methods=['POST'])
 def main():
-    logging.info('Request: %r', request.json)
+
     response = {
         'session': request.json['session'],
         'version': request.json['version'],
@@ -27,7 +26,7 @@ def main():
         }
     }
     handle_dialog(response, request.json)
-    logging.info('Response: %r', response)
+
     return json.dumps(response)
 
 
